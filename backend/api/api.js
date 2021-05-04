@@ -1,6 +1,8 @@
 const Router = require('express').Router();
 const IncubeteeDetail = require('../models/Incubeetes');
 const IncubatorDetail = require('../models/Incubator');
+const BlogDetail = require("../models/blogpage");
+const IdeaDetail = require("../models/IdeaPage");
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
@@ -65,5 +67,111 @@ Router.route('/register_incubator')
         return res.status(200).json(incubator);
     })
 
+Router.route("/compose").post((req, res) => {
+    const blogPost = new BlogDetail({
+        blogGroupName: req.body.blogGroupName,
+        blogTitle: req.body.blogTitle,
+        blogContent: req.body.blogContent,
+        blogUsername: req.body.blogUsername,
+    });
+    blogPost.save();
+    return res.status(200).json(blogPost);
+});
+
+Router.route("/posts").get((req, res) => {
+    BlogDetail.find({}, function (err, posts) {
+        res.send(posts);
+    });
+});
+
+Router.route("/deleteposts").delete((req, res) => {
+    BlogDetail.deleteMany({}, (err) => {
+        if (!err) {
+            res.send("successfully deleted");
+        } else {
+            res.send(err);
+        }
+    });
+});
+
+Router.route("/posts/:blogGroupName").get((req, res) => {
+    const givenBlogGroupName = req.params.blogGroupName;
+    BlogDetail.find(
+        {
+            blogGroupName: givenBlogGroupName,
+        },
+        function (err, foundList) {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send(foundList);
+            }
+        }
+    );
+});
+
+Router.route("/posts/:postId").get((req, res) => {
+    const requestedId = req.params.postId;
+    BlogDetail.findOne(
+        {
+            _id: requestedId,
+        },
+        function (err, blogPost) {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log(blogPost);
+            }
+        }
+    );
+});
+
+
+Router.route("/idea").get((req, res) => {
+    IdeaDetail.find({}, function (err, ideas) {
+        if (!err) {
+            res.send(ideas);
+        } else {
+            res.send(err);
+        }
+    });
+});
+
+Router.route("/idea/compose").post((req, res) => {
+    const idea = new IdeaDetail({
+        ideaProblemStatement: req.body.ideaProblemStatement,
+        ideaProblemDescription: req.body.ideaProblemDescription,
+        ideaContent: req.body.ideaContent,
+        ideaEnvironment: req.body.ideaEnvironment,
+    });
+    // console.log(idea);
+    idea.save();
+});
+
+Router.route("/Idea/:Id").get((req, res) => {
+    const Id = req.params.Id;
+    IdeaDetail.find(
+        {
+            _id: Id,
+        },
+        function (err, foundList) {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send(foundList);
+            }
+        }
+    );
+});
+
+Router.route("/deleteIdeas").delete((req, res) => {
+    IdeaDetail.deleteMany({}, (err) => {
+        if (!err) {
+            res.send("successfully deleted");
+        } else {
+            res.send(err);
+        }
+    });
+});
 
 exports = module.exports = Router;
