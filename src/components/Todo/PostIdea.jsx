@@ -80,7 +80,7 @@ const PostIdea = () => {
             </div>
             <div class="btn-idea-publish">
               <button
-                class="btn btn-primary btn-lg btn-idea"
+                class="btn btn-light btn-lg btn-idea btn-post"
                 type="submit"
                 name="button"
               >
