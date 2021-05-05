@@ -4,7 +4,7 @@ import axios from "axios";
 const projectID = "df5005e2-f3ab-4398-ac75-b090411fa2c9";
 
 class Incubetee_Login extends React.Component {
-  state = { path: "http://localhost:3000/incubetee" };
+  state = { path: "http://localhost:3000/incubetee", path1: "http://localhost:3000/incubetee" };
 
   componentDidMount() {
     const signUpButton = document.getElementById("signUp");
@@ -95,7 +95,7 @@ class Incubetee_Login extends React.Component {
             },
             data: {
               username: this.state.member1,
-              secret: this.state.password,
+              secret: this.state.clientpassword,
             },
           });
         }
@@ -109,7 +109,7 @@ class Incubetee_Login extends React.Component {
             },
             data: {
               username: this.state.member2,
-              secret: this.state.password,
+              secret: this.state.clientpassword,
             },
           });
         }
@@ -123,7 +123,7 @@ class Incubetee_Login extends React.Component {
             },
             data: {
               username: this.state.member3,
-              secret: this.state.password,
+              secret: this.state.clientpassword,
             },
           });
         }
@@ -137,13 +137,15 @@ class Incubetee_Login extends React.Component {
             },
             data: {
               username: this.state.member4,
-              secret: this.state.password,
+              secret: this.state.clientpassword,
             },
           });
         }
-        this.setState({ path: "http://localhost:3000/dashboard" });
+        alert("Successfully passed");
+        this.setState({ path1: "http://localhost:3000/incubetee" });
       })
       .catch((err) => {
+        alert("error while registering");
         console.log("Error while registering the customer");
       });
   };
@@ -177,9 +179,9 @@ class Incubetee_Login extends React.Component {
       <div className="fake-body">
         <div className="container-client" id="container-client">
           <div className="form-container-client sign-up-container-client">
-            <form className="client-form">
+            <form className="client-form" onSubmit={this.onSubmit1}>
               <h1 className="client-h1">Create Account</h1>
-              <div class="social-container" onSubmit={this.onSubmit1}>
+              <div class="social-container">
                 <a href="#" className="social anker-client">
                   <i className="fab fa-facebook-f"></i>
                 </a>
@@ -262,7 +264,7 @@ class Incubetee_Login extends React.Component {
                 className="signup-input"
               />
               <button className="btn-client" onSubmit={this.onSubmit1}>
-                Sign Up
+                <a href={this.state.path1}>Sign Up</a>
               </button>
             </form>
           </div>
