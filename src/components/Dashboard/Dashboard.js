@@ -1,20 +1,99 @@
 import React from 'react';
 
+import axios from 'axios';
+
 import './Dashboard.css';
 import Card from './Card';
-import TeamData from './TeamData';
+import img1 from '../../images/avatar1.webp';
+import img2 from '../../images/avatar2.webp';
+import img3 from '../../images/avatar4.webp';
+
 
 class Dashboard extends React.Component {
 
+    teamData = [];
+    state = { to_enable: false };
+
+
+    find_team_members = async () => {
+        let user = localStorage.getItem('teamname');
+        const response = await axios.get(`http://localhost:8080/api/login_incubetee/${user}`);
+        console.log(response.data);
+        return response.data;
+    }
+
     onrenderList = () => {
         console.log(typeof (TeamData));
-        return TeamData.map((data) => {
-            return (
-                <div className="cards">
-                    <Card member={data} key={data.id} />
-                </div>
-            )
-        })
+        let member1 = localStorage.getItem('member1');
+        let member2 = localStorage.getItem('member2');
+        let member3 = localStorage.getItem('member3');
+        if (member1 !== "" && member2 !== "" && member3 !== "") {
+            this.teamData = [
+                {
+                    id: 0,
+                    img: img1,
+                    name: member1,
+                    score1: 89,
+                    score2: 92,
+                },
+                {
+                    id: 1,
+                    img: img2,
+                    name: member2,
+                    score1: 91,
+                    score2: 92,
+                },
+                {
+                    id: 1,
+                    img: img3,
+                    name: member3,
+                    score1: 88,
+                    score2: 91,
+                }
+            ];
+            return this.teamData.map((data) => {
+                return (
+                    <div className="cards">
+                        <Card member={data} key={data.id} />
+                    </div>
+                )
+            })
+        } else {
+            let user = this.find_team_members();
+            let member1 = user.name_of_members[0];
+            let member2 = user.name_of_members[1];
+            let member3 = user.name_of_members[2];
+            this.teamData = [
+                {
+                    id: 0,
+                    img: img1,
+                    name: member1,
+                    score1: 89,
+                    score2: 92,
+                },
+                {
+                    id: 1,
+                    img: img2,
+                    name: member2,
+                    score1: 91,
+                    score2: 92,
+                },
+                {
+                    id: 1,
+                    img: img3,
+                    name: member3,
+                    score1: 88,
+                    score2: 91,
+                }
+            ];
+            return this.teamData.map((data) => {
+                return (
+                    <div className="cards">
+                        <Card member={data} key={data.id} />
+                    </div>
+                )
+            })
+        }
     };
 
     componentDidMount() {
@@ -25,6 +104,14 @@ class Dashboard extends React.Component {
             burger.classList.toggle("is-open");
             nav.classList.toggle("is-open");
         });
+    }
+
+    approved = () => {
+        if (this.state.to_enable === false) {
+            return <a>Chat</a>
+        } else {
+            return <a href="http://localhost:3000/chat">Chat</a>
+        }
     }
 
     render() {
@@ -62,7 +149,9 @@ class Dashboard extends React.Component {
                                             <path fill="#fff" transform="translate(.003)" d="M0 0h22.49v22H0z" />
                                         </clipPath>
                                     </defs>
-                                </svg> </span><a href="http://localhost:3000/chat">Chat</a>
+                                </svg>
+                            </span>
+                            {this.approved()}
                         </li>
                         <li class="menu__item" style={{ color: 'black' }}>
                             <span class="menu__icon">

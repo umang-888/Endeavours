@@ -8,14 +8,10 @@ function IdeaGet() {
   const [items, setItems] = useState([]);
 
   const instructfunc = async () => {
-    try {
-      const data = await axios.get("http://localhost:8080/api/idea").then((res) => {
-        setItems(res.data);
-      });
-    } catch (e) {
-      console.log(e);
-    }
-  };
+    const response = await axios.get("http://localhost:8080/api/idea");
+    setItems(response.data);
+
+  }
   useEffect(() => {
     instructfunc();
   }, []);

@@ -7,6 +7,7 @@ class LoginForm extends React.Component {
 
     state = {
         username: '',
+        teamname: '',
         password: ''
     };
 
@@ -19,6 +20,7 @@ class LoginForm extends React.Component {
 
             localStorage.setItem('username', this.state.username);
             localStorage.setItem('password', this.state.password);
+            localStorage.setItem('teamname', this.state.teamname);
 
             window.location.reload();
             alert("Successfully passed");
@@ -33,6 +35,10 @@ class LoginForm extends React.Component {
                 <div className="field">
                     <label> User Name </label>
                     <input type="text" value={this.state.username} onChange={(e) => this.setState({ username: e.target.value })} />
+                </div>
+                <div className="field">
+                    <label> Team Name </label>
+                    <input type="text" value={this.state.teamname} onChange={(e) => this.setState({ teamname: e.target.value })} />
                 </div>
                 <div className="field">
                     <label> Password </label>

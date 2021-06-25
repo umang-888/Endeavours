@@ -24,11 +24,11 @@ const PostIdea = () => {
       .post("http://localhost:8080/idea/api/compose", idea)
       .then(function (response) {
         console.log(response);
+        alert("We recieved your Idea! Thanks for posting 😄");
       })
       .catch(function (error) {
         console.log(error);
       });
-    alert("We recieved your Idea! Thanks for posting 😄");
   };
   return (
     <div className="container">

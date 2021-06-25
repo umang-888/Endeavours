@@ -51,6 +51,17 @@ Router.route('/login_incubetee')
         res.json({ status: "error", data: "Invalid Groupname/Password" });
     })
 
+Router.route('/login_incubetee/:team_name')
+    .get((req, res) => {
+        IncubeteeDetail.findOne({ groupName: req.params.team_name })
+            .then((team) => {
+                return res.send(team);
+            })
+            .catch((err) => {
+                res.json({ status: "error", data: "Invalid Groupname" });
+            })
+    })
+
 // Incubator portal
 // Registering the incubator in the portal
 Router.route('/register_incubator')
@@ -110,11 +121,12 @@ Router.route("/posts/:blogGroupName").get((req, res) => {
     );
 });
 
+
+// Giving the empty array
 Router.route("/posts/:postId").get((req, res) => {
-    const requestedId = req.params.postId;
-    BlogDetail.findOne(
+    BlogDetail.findById(
         {
-            _id: requestedId,
+            _id: req.params.postId,
         },
         function (err, blogPost) {
             if (err) {
@@ -146,6 +158,12 @@ Router.route("/idea/compose").post((req, res) => {
     });
     // console.log(idea);
     idea.save();
+    return res.status(200).json(idea);
+});
+
+// CASE1 - register - email_id
+// Case2 - login - team name - email_id
+Router.route("/idea/:email_id").post((req, res) => {
 });
 
 Router.route("/Idea/:Id").get((req, res) => {

@@ -111,6 +111,7 @@ class RegisterForm extends React.Component {
                         }
                     });
                 }
+
             })
             .catch((err) => {
                 console.log("Error while registering the customer");
