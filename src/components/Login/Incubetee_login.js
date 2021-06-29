@@ -4,7 +4,10 @@ import axios from "axios";
 const projectID = "df5005e2-f3ab-4398-ac75-b090411fa2c9";
 
 class Incubetee_Login extends React.Component {
-  state = { path: "http://localhost:3000/incubetee", path1: "http://localhost:3000/incubetee" };
+  state = {
+    path: "http://localhost:3000/incubetee",
+    path1: "http://localhost:3000/incubetee",
+  };
 
   componentDidMount() {
     const signUpButton = document.getElementById("signUp");
@@ -72,6 +75,7 @@ class Incubetee_Login extends React.Component {
         localStorage.setItem("clientdeadline", incubetee.data.deadline);
         localStorage.setItem("clientemail", incubetee.data.email);
         localStorage.setItem("clientpassword", this.state.password);
+        sessionStorage.setItem("clientemail", incubetee.data.email);
         axios({
           method: "POST",
           url: "https://api.chatengine.io/chats/",

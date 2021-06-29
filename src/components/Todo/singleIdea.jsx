@@ -10,7 +10,7 @@ function SingleIdea() {
   const instructfuncsingle = async () => {
     try {
       const data = await axios
-        .get(`http://localhost:8080/api/Idea/${Id}`)
+        .get(`http://localhost:8080/Idea/${Id}`)
         .then((res) => {
           setItems(res.data);
         });

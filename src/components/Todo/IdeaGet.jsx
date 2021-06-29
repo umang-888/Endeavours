@@ -2,16 +2,20 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Header from "./Header";
-import { useParams } from "react-router-dom";
 import "./custom.css";
+import { useParams } from "react-router-dom";
 function IdeaGet() {
   const [items, setItems] = useState([]);
 
   const instructfunc = async () => {
-    const response = await axios.get("http://localhost:8080/api/idea");
-    setItems(response.data);
-
-  }
+    try {
+      const data = await axios.get("http://localhost:8080/idea").then((res) => {
+        setItems(res.data);
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
   useEffect(() => {
     instructfunc();
   }, []);

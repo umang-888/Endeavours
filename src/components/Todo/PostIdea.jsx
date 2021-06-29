@@ -5,6 +5,7 @@ import "./custom.css";
 
 const PostIdea = () => {
   const [idea, setIdea] = useState({
+    teamName: "",
     ideaProblemStatement: "",
     ideaProblemDescription: "",
     ideaContent: "",
@@ -21,14 +22,16 @@ const PostIdea = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:8080/idea/api/compose", idea)
+      .post("http://localhost:8080/idea/compose", idea)
       .then(function (response) {
         console.log(response);
-        alert("We recieved your Idea! Thanks for posting 😄");
       })
       .catch(function (error) {
         console.log(error);
       });
+    alert(
+      "We recieved your Idea! Thanks for posting and please wait for approval 😄"
+    );
   };
   return (
     <div className="container">
@@ -39,6 +42,15 @@ const PostIdea = () => {
         <div class="card-body">
           <form onSubmit={handleSubmit}>
             <div class="form-group">
+              <label>Team Name</label>
+              <input
+                class="form-control"
+                type="text"
+                name="teamName"
+                value={idea.teamName}
+                onChange={handleChange}
+                required
+              />
               <label>Problem Statement</label>
               <input
                 class="form-control"
