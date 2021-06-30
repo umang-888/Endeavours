@@ -20,7 +20,7 @@ function Header() {
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav justify-content-end">
             <li class="nav-item active">
-              <a class="nav-link" href="/">
+              <a class="nav-link" href="http://localhost:3000/todo">
                 View Blogs<span class="sr-only">(current)</span>
               </a>
             </li>

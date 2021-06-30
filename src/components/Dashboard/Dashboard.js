@@ -1,18 +1,24 @@
 import React from 'react';
 
 import axios from 'axios';
-
+import CryptoJs from 'crypto-js';
 import './Dashboard.css';
 import Card from './Card';
 import img1 from '../../images/avatar1.webp';
 import img2 from '../../images/avatar2.webp';
 import img3 from '../../images/avatar4.webp';
 
+const secretKey = '_zefdsuh123';
+let groupName = CryptoJs.AES.encrypt(localStorage.getItem('teamname'), secretKey).toString();
+let path = "http://localhost:3000/chat/" + groupName;
+let path1 = "http://localhost:3000/todo/" + groupName;
+let groupname = CryptoJs.AES.encrypt(localStorage.getItem('groupName'), secretKey).toString();
+let path2 = "http://localhost:3000/todo/" + groupname;
 
 class Dashboard extends React.Component {
 
     teamData = [];
-    state = { to_enable: false };
+    state = { to_enable: false, goto: path1};
 
 
     find_team_members = async () => {
@@ -110,8 +116,17 @@ class Dashboard extends React.Component {
         if (this.state.to_enable === false) {
             return <a>Chat</a>
         } else {
-            return <a href="http://localhost:3000/chat">Chat</a>
+            return <a href={path}>Chat</a>
         }
+    }
+
+    onLogOut = () => {
+        localStorage.clear();
+    }
+
+    onDaily = () => {
+        if(path1===undefined) this.setState({goto : path2 });
+        else this.setState({goto : path1 });
     }
 
     render() {
@@ -136,7 +151,7 @@ class Dashboard extends React.Component {
                             <span class="menu__icon">
                                 <svg width="23" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M13.122 10.083h-1.406V5.958a.454.454 0 00-.137-.324.474.474 0 00-.663 0 .453.453 0 00-.137.324v4.125H9.373a.474.474 0 00-.33.135.453.453 0 00-.138.324v7.333c0 .122.05.238.137.324a.474.474 0 00.331.134h1.406v2.75c0 .122.05.239.137.324a.474.474 0 00.663 0 .453.453 0 00.137-.324v-2.75h1.406a.474.474 0 00.331-.134.453.453 0 00.137-.324v-7.333a.453.453 0 00-.137-.324.474.474 0 00-.331-.135zM5.625 3.208H4.219V1.833a.453.453 0 00-.137-.324.474.474 0 00-.662 0 .453.453 0 00-.138.324v1.375H1.877a.474.474 0 00-.332.135.453.453 0 00-.137.324v11c0 .121.05.238.137.324a.474.474 0 00.332.134h1.405v3.667c0 .121.05.238.138.324a.474.474 0 00.662 0 .454.454 0 00.137-.324v-3.667h1.406a.474.474 0 00.331-.134.454.454 0 00.138-.324v-11a.453.453 0 00-.138-.324.474.474 0 00-.331-.135zM20.618 6.417h-1.405V1.833a.454.454 0 00-.137-.324.474.474 0 00-.663 0 .453.453 0 00-.137.324v4.584H16.87a.474.474 0 00-.331.134.453.453 0 00-.137.324v10.542c0 .121.049.238.137.324a.474.474 0 00.331.134h1.406v2.292c0 .121.05.238.137.324a.474.474 0 00.663 0 .454.454 0 00.137-.324v-2.292h1.405a.474.474 0 00.332-.134.454.454 0 00.137-.324V6.875a.454.454 0 00-.137-.324.474.474 0 00-.332-.134z" fill="#A4A8BD" />
-                                </svg> </span><a href="http://localhost:3000/todo">Daily Updates</a>
+                                </svg> </span><a href={this.state.goto} onClick={this.onDaily}>Daily Updates</a>
                         </li>
                         <li class="menu__item" style={{ color: 'black' }}>
                             <span class="menu__icon">
@@ -166,7 +181,7 @@ class Dashboard extends React.Component {
                                 <svg width="19" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M10.736 7.5h-4.6v3h4.6V15l7.668-6-7.668-6v4.5z" fill="#A4A8BD" />
                                     <path d="M3.07 3h6.133V0H3.069C2.256 0 1.476.316.901.879A2.967 2.967 0 00.003 3v12c0 .796.323 1.559.898 2.121A3.102 3.102 0 003.069 18h6.134v-3H3.069V3z" fill="#A4A8BD" />
-                                </svg> </span><a href="http://localhost:3000/incubetee">Logout</a></a>
+                                </svg> </span><a href="http://localhost:3000/incubetee" onClick={this.onLogOut}>Logout</a></a>
                     </div>
                 </aside>
                 <main class="main">
