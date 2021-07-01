@@ -63,7 +63,6 @@ Router.route("/register_incubeete").post(async (req, res) => {
   return res.status(200).json(incubetee);
 });
 
-let mailId = "";
 // login the incubetee in the portal
 Router.route("/login_incubetee").post(async (req, res) => {
   const { groupName, password } = req.body;
