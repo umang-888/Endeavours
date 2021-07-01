@@ -73,13 +73,12 @@ app.route("/idea/compose").post((req, res) => {
   });
 
   const mailSubject = `New idea has been posted by Team ${req.body.teamName}`;
-
+  const mailtext = `${req.body.ideaProblemDescription} approve it from here: http://localhost:3000/approve`;
   const mailOptions = {
     from: "himanshu.sharma11199@gmail.com",
     to: "himanshu.sharma11199@gmail.com",
     subject: mailSubject,
-    text: req.body.ideaProblemDescription,
-    html: `<a href="http://localhost:3000/approve></a>`,
+    text: mailtext,
   };
   transporter.sendMail(mailOptions, function (error, info) {
     if (error) {
