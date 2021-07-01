@@ -1,12 +1,18 @@
 import React from "react";
 import axios from "axios";
-import CryptoJs from 'crypto-js';
+import CryptoJs from "crypto-js";
 
 const projectID = "df5005e2-f3ab-4398-ac75-b090411fa2c9";
 
-const secretKey = '_zefdsuh123';
-let groupName = CryptoJs.AES.encrypt(localStorage.getItem('groupName'), secretKey).toString();
-let teamname = CryptoJs.AES.encrypt(localStorage.getItem('teamname'), secretKey).toString();
+const secretKey = "_zefdsuh123";
+let groupName = CryptoJs.AES.encrypt(
+  localStorage.getItem("groupName"),
+  secretKey
+).toString();
+let teamname = CryptoJs.AES.encrypt(
+  localStorage.getItem("teamname"),
+  secretKey
+).toString();
 
 class Incubetee_Login extends React.Component {
   state = {
@@ -40,7 +46,7 @@ class Incubetee_Login extends React.Component {
     clientpassword: "",
     username: "",
     password: "",
-    teamname: ""
+    teamname: "",
   };
 
   project_id = "df5005e2-f3ab-4398-ac75-b090411fa2c9";
@@ -153,7 +159,8 @@ class Incubetee_Login extends React.Component {
           });
         }
         alert("Successfully passed");
-        this.setState({ path1: `http://localhost:3000/dashboard/${groupName}` });
+        //this.setState({ path1: `http://localhost:3000/dashboard/${groupName}` });
+        this.setState({ path1: "http://localhost:3000/dashboard" });
       })
       .catch((err) => {
         alert("error while registering");
@@ -177,11 +184,12 @@ class Incubetee_Login extends React.Component {
 
       localStorage.setItem("username", this.state.username);
       localStorage.setItem("password", this.state.password);
-      localStorage.setItem('teamname', this.state.teamname);
+      localStorage.setItem("teamname", this.state.teamname);
 
       // window.location.reload();
       alert("Successfully passed");
-      this.setState({ path: `http://localhost:3000/dashboard/${teamname}`});
+      //this.setState({ path: `http://localhost:3000/dashboard/${teamname}` });
+      this.setState({ path: "http://localhost:3000/dashboard" });
     } catch (err) {
       alert("Oops, incorrect credentials.");
     }

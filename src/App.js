@@ -34,12 +34,14 @@ const App = () => {
     <Router>
       <Route path="/" exact component={HomePage} />
       <Route path="/incubetee" exact component={Incubetee} />
-      <Route exact path="/dashboard/:id" exact component={Dashboard} />
+      {/* <Route exact path="/dashboard/:id" exact component={Dashboard} />
       <Route path={path1} exact component={Dashboard} />
-      <Route path={path2} exact component={Dashboard} />
+      <Route path={path2} exact component={Dashboard} /> */}
+      <Route path="/dashboard" exact component={Dashboard} />
       <Route path="/about" exact component={About} />
-      <Route exact path="/todo/:id" exact component={BlogHome} />
-      <Route path="/posts/:groupName" exact component={SingleProject} />
+      {/* <Route exact path="/todo/:id" exact component={BlogHome} /> */}
+      <Route path="/todo" exact component={BlogHome} />
+      <Route path="/posts" exact component={SingleProject} />
       <Route path="/Idea/:Id" exact component={SingleIdea} />
       <Route path="/idea" exact component={IdeaGet} />
       <Route path="/idea/compose" exact component={PostIdea} />

@@ -79,6 +79,7 @@ app.route("/idea/compose").post((req, res) => {
     to: "himanshu.sharma11199@gmail.com",
     subject: mailSubject,
     text: req.body.ideaProblemDescription,
+    html: `<a href="http://localhost:3000/approve></a>`,
   };
   transporter.sendMail(mailOptions, function (error, info) {
     if (error) {
