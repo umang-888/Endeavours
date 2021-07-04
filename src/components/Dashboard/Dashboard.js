@@ -13,7 +13,7 @@ let groupName = CryptoJs.AES.encrypt(
   localStorage.getItem("teamname"),
   secretKey
 ).toString();
-let path = "http://localhost:3000/chat/" + groupName;
+let path = "http://localhost:3000/chat/";
 let path1 = "http://localhost:3000/todo/" + groupName;
 let groupname = CryptoJs.AES.encrypt(
   localStorage.getItem("groupName"),
@@ -119,11 +119,8 @@ class Dashboard extends React.Component {
   }
 
   approved = () => {
-    if (this.state.to_enable === false) {
-      return <a>Chat</a>;
-    } else {
-      return <a href={path}>Chat</a>;
-    }
+    if(localStorage.getItem("approved")===true) return <a href={path}>Chat</a>;
+    else return <a>Chat</a>;
   };
 
   onLogOut = () => {
@@ -207,7 +204,7 @@ class Dashboard extends React.Component {
                   </defs>
                 </svg>
               </span>
-              {this.approved()}
+              {localStorage.getItem("approved")==="true" ? <a href="http://localhost:3000/chat">Chat</a> : <a>Chat</a>}
             </li>
             <li class="menu__item" style={{ color: "black" }}>
               <span class="menu__icon">

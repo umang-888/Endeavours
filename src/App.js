@@ -34,12 +34,9 @@ const App = () => {
     <Router>
       <Route path="/" exact component={HomePage} />
       <Route path="/incubetee" exact component={Incubetee} />
-      {/* <Route exact path="/dashboard/:id" exact component={Dashboard} />
-      <Route path={path1} exact component={Dashboard} />
-      <Route path={path2} exact component={Dashboard} /> */}
       <Route path="/dashboard" exact component={Dashboard} />
+      <Route path="/chat" exact component={Chat} />
       <Route path="/about" exact component={About} />
-      {/* <Route exact path="/todo/:id" exact component={BlogHome} /> */}
       <Route path="/todo" exact component={BlogHome} />
       <Route path="/posts" exact component={SingleProject} />
       <Route path="/Idea/:Id" exact component={SingleIdea} />
@@ -47,7 +44,6 @@ const App = () => {
       <Route path="/idea/compose" exact component={PostIdea} />
       <Route path="/log_incubetee" exact component={IncubeteeLogin} />
       <Route path="/reg_incubetee" exact component={IncubeteeRegister} />
-      <Route exact path="/chat/:id" exact component={Chat} />
     </Router>
   );
 };

@@ -19,8 +19,8 @@ const jwt = require("jsonwebtoken");
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: "himanshu.sharma11199@gmail.com",
-    pass: "18bec1119",
+    user: "endovoursproject@gmail.com",
+    pass: "Abc@1234567",
   },
 });
 
@@ -73,10 +73,10 @@ app.route("/idea/compose").post((req, res) => {
   });
 
   const mailSubject = `New idea has been posted by Team ${req.body.teamName}`;
-  const mailtext = `${req.body.ideaProblemDescription} approve it from here: http://localhost:3000/approve`;
+  const mailtext = `${req.body.ideaProblemDescription} approve it from here: http://localhost:3000/idea`;
   const mailOptions = {
-    from: "himanshu.sharma11199@gmail.com",
-    to: "himanshu.sharma11199@gmail.com",
+    from: "endovoursproject@gmail.com",
+    to: "endovoursproject@gmail.com",
     subject: mailSubject,
     text: mailtext,
   };

@@ -16,7 +16,7 @@ const Chat = () => {
     // console.log(register_incubetee_name, register_incubetee_password, login_incubetee_name, login_incubetee_password);
 
 
-    if (!localStorage.getItem('username')) return <LoginForm />;
+    // if (!localStorage.getItem('username')) return <LoginForm />;
 
     // userName = { localStorage.getItem('username') }
     // userSecret = { localStorage.getItem('password') }

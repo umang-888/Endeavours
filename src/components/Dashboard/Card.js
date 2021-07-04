@@ -15,14 +15,14 @@ class Card extends React.Component {
                 </header>
                 <div class="card__body">
                     <div class="stats">
-                        <div class="score">
+                        {/* <div class="score">
                             <h3 style={{ color: 'black' }}>{this.props.member.score1}</h3>
                             <small class="title" style={{ color: 'black' }}>Nodejs</small>
                         </div>
                         <div class="score">
                             <h3 style={{ color: 'black' }}>{this.props.member.score2}</h3>
                             <small class="title" style={{ color: 'black' }}>React</small>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>

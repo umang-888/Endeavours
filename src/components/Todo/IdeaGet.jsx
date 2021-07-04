@@ -7,6 +7,10 @@ import { useParams } from "react-router-dom";
 function IdeaGet() {
   const [items, setItems] = useState([]);
 
+  const Approval = () => {
+    localStorage.setItem("approved",true);
+  }
+
   const instructfunc = async () => {
     try {
       const data = await axios.get("http://localhost:8080/idea").then((res) => {
@@ -44,6 +48,7 @@ function IdeaGet() {
                 <p class="card-text" key="item._id">
                   {item.ideaContent.slice(0, 300) + "..."}
                 </p>
+                <br />
 
                 <Link
                   to={`/Idea/${item._id}`}
@@ -51,6 +56,16 @@ function IdeaGet() {
                 >
                   Read More
                 </Link>
+                <div class="btn-idea-publish">
+                  <button
+                  class="btn btn-light btn-lg btn-idea btn-post"
+                  type="submit"
+                  name="button"
+                  onClick={Approval}
+                  >
+                  Approve
+                  </button>
+                </div>
               </div>
             </div>
           </div>

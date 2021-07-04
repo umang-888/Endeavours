@@ -11,8 +11,8 @@ const JWT_SECRET = "efennvbhsagehkfkgghaeufbakewfrghusragh1u437wt4q940t5y-";
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: "himanshu.sharma11199@gmail.com",
-    pass: "18bec1119",
+    user: "endovoursproject@gmail.com",
+    pass: "Abc@1234567",
   },
 });
 
@@ -32,7 +32,7 @@ Router.route("/register_incubeete").post(async (req, res) => {
   };
 
   const mailOptions = {
-    from: "himanshu.sharma11199@gmail.com",
+    from: "endovoursproject@gmail.com",
     to: req.body.email,
     subject: "You are registered",
     html: `<header style="border-bottom: 2px solid rgb(36, 36, 36);">
@@ -45,7 +45,7 @@ Router.route("/register_incubeete").post(async (req, res) => {
                   <p>For further query:) </p>
                   
                   <p style="color: rgb(43, 43, 226);">9784618853</p>
-                  <p style="color: rgb(43, 43, 226);">himanshu.sharma11199@gmail.com</p>
+                  <p style="color: rgb(43, 43, 226);">endovoursproject@gmail.com</p>
                   
                   <p>Thanks for registering</p>
               </div>

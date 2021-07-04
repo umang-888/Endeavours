@@ -47,6 +47,7 @@ class Incubetee_Login extends React.Component {
     username: "",
     password: "",
     teamname: "",
+    role: ""
   };
 
   project_id = "df5005e2-f3ab-4398-ac75-b090411fa2c9";
@@ -88,6 +89,8 @@ class Incubetee_Login extends React.Component {
         localStorage.setItem("clientdeadline", incubetee.data.deadline);
         localStorage.setItem("clientemail", incubetee.data.email);
         localStorage.setItem("clientpassword", this.state.password);
+        localStorage.setItem("role", incubetee.data.role);
+        localStorage.setItem("type", "signup");
         sessionStorage.setItem("clientemail", incubetee.data.email);
         axios({
           method: "POST",
@@ -185,6 +188,7 @@ class Incubetee_Login extends React.Component {
       localStorage.setItem("username", this.state.username);
       localStorage.setItem("password", this.state.password);
       localStorage.setItem("teamname", this.state.teamname);
+      localStorage.setItem("type", "login");
 
       // window.location.reload();
       alert("Successfully passed");
