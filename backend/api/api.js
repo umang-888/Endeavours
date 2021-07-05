@@ -88,10 +88,32 @@ Router.route("/login_incubetee").post(async (req, res) => {
   res.json({ status: "error", data: "Invalid Groupname/Password" });
 });
 
+Router.route("/login_incubatee/:team_name/:approved_status").post((req, res) => {
+  IncubeteeDetail.findOne({ groupName: req.params.team_name })
+    .then((team) => {
+      team.authorization_status = req.params.approved_status;
+      team.save();
+      return res.send(team);
+    })
+    .catch((err) => {
+      res.json({ status: "error", data: "Invalid Groupname" });
+    });
+});
+
 Router.route("/login_incubetee/:team_name").get((req, res) => {
   IncubeteeDetail.findOne({ groupName: req.params.team_name })
     .then((team) => {
       mailId = team.email;
+      return res.send(team);
+    })
+    .catch((err) => {
+      res.json({ status: "error", data: "Invalid Groupname" });
+    });
+});
+
+Router.route("/login_incubatee/:team_name").get((req, res) => {
+  IncubeteeDetail.findOne({ groupName: req.params.team_name })
+    .then((team) => {
       return res.send(team);
     })
     .catch((err) => {

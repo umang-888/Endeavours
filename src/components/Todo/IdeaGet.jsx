@@ -3,12 +3,18 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Header from "./Header";
 import "./custom.css";
-import { useParams } from "react-router-dom";
 function IdeaGet() {
   const [items, setItems] = useState([]);
 
   const Approval = () => {
     localStorage.setItem("approved",true);
+    // axios.post(`http://localhost:8080/api/login_incubatee/${localStorage.getItem("teamname")}/${true}`)
+    //     .then((data)=>{
+    //       console.log(data);
+    //     })
+    //     .catch((err)=>{
+    //       console.log("Cleared");
+    //     })
   }
 
   const instructfunc = async () => {

@@ -194,6 +194,7 @@ class Incubetee_Login extends React.Component {
       alert("Successfully passed");
       //this.setState({ path: `http://localhost:3000/dashboard/${teamname}` });
       this.setState({ path: "http://localhost:3000/dashboard" });
+      localStorage.setItem("approved",true);
     } catch (err) {
       alert("Oops, incorrect credentials.");
     }
